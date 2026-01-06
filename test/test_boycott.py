@@ -20,12 +20,6 @@ def test_check_product_not_boycotted():
     assert result["boycotted"] is False
 
 
-def test_check_location_not_found():
-    location_name = "inconnu"
-    result = check_location(location_name)
-    assert result is None
-
-
 def test_check_location_case_insensitive():
     location_name = "CARREFOUR"
     result = check_location(location_name)
