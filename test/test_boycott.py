@@ -1,5 +1,5 @@
 import pytest
-from boycott import check_location
+from boycott import check_location, check_product
 
 
 def test_check_location_found():
@@ -14,8 +14,8 @@ def test_location_boycotted():
     assert result["boycotted"] is True
 
 
-def test_check_location_not_boycotted():
-    result = check_location("Aziza")
+def test_check_product_not_boycotted():
+    result = check_product("Hamadi Abid")
     assert result is not None
     assert result["boycotted"] is False
 
