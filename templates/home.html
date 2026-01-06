@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero section -->
+<section class="hero-section bg-primary text-white py-5">
+  <div class="container d-flex flex-column flex-md-row align-items-center gap-4">
+    <!-- Image du drapeau à gauche -->
+    <img src="{{ url_for('static', filename='images/flag.jpg') }}" 
+         alt="Palestine Flag" 
+         class="hero-flag">
+
+    <!-- Texte principal -->
+    <div class="hero-text text-center text-md-start">
+      <h1 class="display-4 fw-bold">Stop Boycotting, Choose Wisely!</h1>
+      <p class="lead mt-3">Learn about products, support local businesses, and make informed choices.</p>
+      <a href="{{ url_for('signup') }}" class="btn btn-light btn-lg mt-3 hero-btn">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- Scrollable informational sections -->
+<section class="info-section py-5">
+  <div class="container">
+    <div class="row g-4">
+
+      <div class="col-md-4">
+        <div class="card shadow info-card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Why Check Products?</h5>
+            <p class="card-text">
+              Many products are subject to boycotts due to ethical, environmental, or political reasons. 
+              Checking helps you make responsible choices and support the right companies.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow info-card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Support Local Businesses</h5>
+            <p class="card-text">
+              By choosing local products, you contribute to your community's economy, 
+              reduce environmental impact, and encourage ethical practices.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow info-card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title">Make Informed Decisions</h5>
+            <p class="card-text">
+              Not all products are bad. Using this platform, you can quickly check if a product is boycotted 
+              and find safer alternatives.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Call to action section -->
+<section class="cta-section py-5 text-center">
+  <div class="container">
+    <h2 class="fw-bold">Ready to Check Products?</h2>
+    <p class="lead mb-4">Sign up and start making responsible choices today!</p>
+    <a href="{{ url_for('signup') }}" class="btn btn-primary btn-lg cta-btn">Sign Up Now</a>
+  </div>
+</section>
+
+{% endblock %}

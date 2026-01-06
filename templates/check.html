@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6">
+    <div class="card p-4 shadow">
+      <h2 class="mb-4 text-center">Check Boycott Status</h2>
+
+      <form method="post">
+        <div class="mb-3">
+          <label class="form-label">Check for:</label>
+          <select name="check_type" class="form-select" required>
+            <option value="product">Product</option>
+            <option value="location">Location</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <input type="text" name="name" class="form-control" placeholder="Enter product or location name" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Check</button>
+      </form>
+
+      {% if result %}
+      <div class="mt-4 text-center">
+        {% if result.status == 'not_found' %}
+          <p class="text-warning fw-bold">⚠ Not found!</p>
+        {% elif result.boycotted %}
+          <p class="text-danger fw-bold">❌ {{ result.type }} is boycotted!</p>
+
+          <!-- Afficher l'image boycott.png si boycotté -->
+          <img src="{{ url_for('static', filename='images/boycott.png') }}" 
+               alt="Boycotted" class="img-fluid my-2" style="max-width:150px;">
+
+          {% if result.type == 'Product' %}
+            {% if result.alternative %}
+              <p>Alternatives: {{ result.alternative }}</p>
+            {% endif %}
+          {% else %}
+            {% if result.alternative %}
+              <p>Alternative location: {{ result.alternative }}</p>
+            {% endif %}
+          {% endif %}
+
+        {% else %}
+          <p class="text-success fw-bold">✅ {{ result.type }} is NOT boycotted!</p>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

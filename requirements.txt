@@ -1,0 +1,4 @@
+flask
+werkzeug
+pytest==7.4.2
+safety

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Admin Dashboard</h2>
+  <div class="row">
+
+    <!-- ----------------- PRODUITS ----------------- -->
+    <div class="col-md-6">
+      <div class="card p-3 mb-4 shadow">
+        <h4>Manage Products</h4>
+
+        <!-- Formulaire ajouter produit -->
+        <form method="post" action="{{ url_for('route_add_product') }}" class="row g-3 mb-3">
+          <div class="col-md-6">
+            <input name="name" class="form-control" placeholder="Product Name" required>
+          </div>
+          <div class="col-md-3">
+            <select name="boycotted" class="form-select">
+              <option value="1">Boycotted</option>
+              <option value="0">Not Boycotted</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <input name="alternatives" class="form-control mt-2" placeholder="Product Alternatives">
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary w-100">Add Product</button>
+          </div>
+        </form>
+
+        <!-- Liste produits -->
+        <table class="table table-striped mt-3">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Alternatives</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in products %}
+            <tr>
+              <form method="post" action="{{ url_for('route_update_product', product_id=p[0]) }}">
+                <td>{{ p[1] }}</td>
+                <td>
+                  <select name="boycotted" class="form-select">
+                    <option value="1" {% if p[2]==1 %}selected{% endif %}>Boycotted</option>
+                    <option value="0" {% if p[2]==0 %}selected{% endif %}>Not Boycotted</option>
+                  </select>
+                </td>
+                <td><input name="alternatives" class="form-control" value="{{ p[3] }}"></td>
+                <td>
+                  <button class="btn btn-success btn-sm mb-1 w-100">Update</button>
+                  <a href="{{ url_for('route_delete_product', product_id=p[0]) }}" class="btn btn-danger btn-sm w-100">Delete</a>
+                </td>
+              </form>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ----------------- LIEUX ----------------- -->
+    <div class="col-md-6">
+      <div class="card p-3 mb-4 shadow">
+        <h4>Manage Locations</h4>
+
+        <!-- Formulaire ajouter lieu -->
+        <form method="post" action="{{ url_for('route_add_location') }}" class="row g-3 mb-3">
+          <div class="col-6">
+            <input name="name" class="form-control" placeholder="Location Name" required>
+          </div>
+          <div class="col-6">
+            <input name="alt_name" class="form-control" placeholder="Alternative Location" required>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary w-100">Add Location</button>
+          </div>
+        </form>
+
+        <!-- Liste lieux -->
+        <table class="table table-striped mt-3">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Alternative</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for loc in locations %}
+            <tr>
+              <form method="post" action="{{ url_for('route_update_location', location_id=loc[0]) }}">
+                <td><input name="name" class="form-control" value="{{ loc[1] }}"></td>
+                <td><input name="alt_name" class="form-control" value="{{ loc[2] }}"></td>
+                <td>
+                  <button class="btn btn-success btn-sm mb-1 w-100">Update</button>
+                  <a href="{{ url_for('route_delete_location', location_id=loc[0]) }}" class="btn btn-danger btn-sm w-100">Delete</a>
+                </td>
+              </form>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
