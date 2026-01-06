@@ -27,6 +27,7 @@ pipeline {
             steps {
                 sh '''
                 . venv/bin/activate
+                export PYTHONPATH=$PYTHONPATH:$(pwd)
                 pytest
                 '''
             }
