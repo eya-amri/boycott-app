@@ -9,7 +9,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/TON-USERNAME/boycott-app.git'
+                git url: 'https://github.com/eya-amri/boycott-app.git', credentialsId: 'github-credential'
             }
         }
 
