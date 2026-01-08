@@ -94,7 +94,7 @@ def admin_dashboard():
 
     db = get_db()
     products = db.execute(
-        "SELECT id, name, boycotted, alternatives FROM products"
+        "SELECT id, name, boycotted, alternative FROM products"
     ).fetchall()
     locations = db.execute("SELECT id, name, alt_name FROM locations").fetchall()
     db.close()
@@ -156,5 +156,5 @@ def route_delete_location(location_id):
 
 if __name__ == "__main__":
     init_db()
-    #app.run(debug=True)
+    # app.run(debug=True)
     app.run(host="0.0.0.0", port=5000, debug=True)

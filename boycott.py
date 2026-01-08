@@ -20,7 +20,7 @@ def check_product(name):
     db.close()
 
     if not product:
-        return {"status": "not_found"}  
+        return {"status": "not_found"}
 
     return {
         "type": "Product",
